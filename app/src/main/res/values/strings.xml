@@ -3,4 +3,6 @@
     <string name="Tabs_1">Alta</string>
     <string name="Tabs_2">Modificación</string>
     <string name="Tabs_3">Listado</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
