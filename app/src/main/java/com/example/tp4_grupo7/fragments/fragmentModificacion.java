@@ -7,60 +7,105 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.tp4_grupo7.R;
+import com.example.tp4_grupo7.domain.Articulo;
+import com.example.tp4_grupo7.domain.Categoria;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link fragmentModificacion#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class fragmentModificacion extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public fragmentModificacion() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragmentModificacion.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static fragmentModificacion newInstance(String param1, String param2) {
-        fragmentModificacion fragment = new fragmentModificacion();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private View view;
+    private EditText edtId, edtNombre, edtStock;
+    private Spinner spCategoria;
+    private Button btnBuscar, btnModificar;
+    private ArrayAdapter<Categoria> adapterSpinner;
+    private Articulo articuloLocal;
+    private String nombre;
+    private Integer stock;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_modificacion,container,false);
+        edtId = view.findViewById(R.id.edt_id);
+        edtNombre = view.findViewById(R.id.edt_nombre);
+        edtStock = view.findViewById(R.id.edt_stock);
+        spCategoria = view.findViewById(R.id.sp_categoria);
+        btnBuscar = view.findViewById(R.id.btn_buscar);
+        btnModificar = view.findViewById(R.id.btn_modificar);
+        articuloLocal = new Articulo();
+        cargarCategorias();
+        btnBuscar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                buscarArticulo();
+            }
+        });
+
+        btnModificar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                modificarArticulo();
+            }
+        });
+        return view;
+    }
+
+    public void cargarCategorias(){
+        //Traer categorias de la BD
+        Categoria[] arraySpinner = new Categoria[] {new Categoria(1, "Prueba"), new Categoria(2,"Test")};
+        adapterSpinner = new ArrayAdapter<Categoria>(getActivity(), android.R.layout.simple_spinner_item, arraySpinner);
+        spCategoria.setAdapter(adapterSpinner);
+    }
+
+    public void buscarArticulo(){
+        if (!edtId.getText().toString().isEmpty()) {
+            Integer id = Integer.parseInt(edtId.getText().toString());
+            //Buscar en BD el ID
+            //articuloLocal = ;
+            //edtNombre.setText(articuloLocal.getNombre());
+            //edtStock.setText(articuloLocal.getStock().toString());
+            //Integer posicion = adapterSpinner.getPosition(articuloLocal.getCategoria());
+            //spCategoria.setSelection(posicion);
+            //Si no existe
+            //Toast.makeText(getActivity() ,"Artículo con ID: "+ id +" no encontrado.",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getActivity(), "Debe ingresar un ID para buscar.", Toast.LENGTH_SHORT).show();
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_modificacion, container, false);
+    public void modificarArticulo(){
+        if(articuloLocal.getId() != -1) {
+            if (!edtStock.getText().toString().isEmpty()) {
+                stock = Integer.parseInt(edtStock.getText().toString());
+            } else {
+                stock = -1;
+            }
+            nombre = edtNombre.getText().toString();
+            Categoria categoriaSelec = (Categoria) spCategoria.getSelectedItem();
+            if (!nombre.trim().isEmpty() && stock > 0) {
+                articuloLocal.setNombre(nombre);
+                articuloLocal.setStock(stock);
+                articuloLocal.setCategoria(categoriaSelec);
+                try {
+                    //Modificar articulo en BD
+                    //Toast.makeText(getActivity() ,"Artículo modificado!",Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    Toast.makeText(getActivity(), "Error al modificar el artículo", Toast.LENGTH_SHORT).show();
+                } finally {
+                    //Cerrar BD
+                }
+            } else if (nombre.trim().isEmpty()) {
+                Toast.makeText(getActivity(), "Debe colocar un nombre para el artículo.", Toast.LENGTH_SHORT).show();
+            } else if (stock < 0) {
+                Toast.makeText(getActivity(), "El stock debe ser mayor a cero.", Toast.LENGTH_SHORT).show();
+            }
+        }else{
+            Toast.makeText(getActivity(), "Debe buscar un artículo para modificar.", Toast.LENGTH_SHORT).show();
+        }
     }
 }

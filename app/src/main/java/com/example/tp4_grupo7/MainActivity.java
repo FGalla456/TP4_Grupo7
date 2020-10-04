@@ -23,27 +23,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.Tabs);
         loadViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
-        /*textColor(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()),"#3b5998");*/
-     /*   tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                textColor(tab,"#3b5998");
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                textColor(tab,"#E0E0E0");
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });*/
-    }
-
-    private void textColor(TabLayout.Tab tab, String color) {
-        tab.getIcon().setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN);
     }
 
     private void loadViewPager(ViewPager viewPager) {
