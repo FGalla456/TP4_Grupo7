@@ -1,4 +1,4 @@
-package com.example.tp4_grupo7.adapter;
+package com.example.tp4_grupo7.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

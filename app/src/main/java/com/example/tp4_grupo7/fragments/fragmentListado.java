@@ -9,8 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
+import com.example.tp4_grupo7.AccesoDatos.ActivityListarArticulos;
+import com.example.tp4_grupo7.Adapter.articuloAdapter;
 import com.example.tp4_grupo7.R;
-import com.example.tp4_grupo7.adapter.articuloAdapter;
 import com.example.tp4_grupo7.domain.Articulo;
 import com.example.tp4_grupo7.domain.Categoria;
 
@@ -29,9 +30,12 @@ public class fragmentListado extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_listado, container, false);
 
-        adapter = new articuloAdapter(view.getContext(), cargarArticulos());
-        grid = view.findViewById(R.id.gv_articulos);
-        grid.setAdapter(adapter);
+       // adapter = new articuloAdapter(view.getContext(), cargarArticulos());
+         grid = view.findViewById(R.id.gv_articulos);
+       // grid.setAdapter(adapter);
+
+            ActivityListarArticulos task = new ActivityListarArticulos(grid, view.getContext());
+            task.execute();
 
         return view;
     }

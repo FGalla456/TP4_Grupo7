@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tp4_grupo7.AccesoDatos.ActivityListarCategorias;
 import com.example.tp4_grupo7.R;
 import com.example.tp4_grupo7.domain.Articulo;
 import com.example.tp4_grupo7.domain.Categoria;
@@ -22,7 +23,7 @@ import androidx.fragment.app.Fragment;
 public class fragmentAlta extends Fragment {
     private View view;
     private EditText edtId, edtNombre, edtStock;
-    private Spinner spCategoria;
+    private Spinner spCategoriaAlta;
     private Button btnAgregar;
     private Integer id, stock;
     private String nombre, categoria;
@@ -34,9 +35,10 @@ public class fragmentAlta extends Fragment {
         edtId = view.findViewById(R.id.edt_id);
         edtNombre = view.findViewById(R.id.edt_nombre);
         edtStock = view.findViewById(R.id.edt_stock);
-        spCategoria = view.findViewById(R.id.sp_categoria);
+        spCategoriaAlta = view.findViewById(R.id.sp_categoriaAlta);
         btnAgregar = view.findViewById(R.id.btn_agregar);
-        cargarCategorias();
+        ActivityListarCategorias task = new ActivityListarCategorias(spCategoriaAlta, view.getContext());
+        task.execute();
         btnAgregar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -47,12 +49,7 @@ public class fragmentAlta extends Fragment {
         return view;
     }
 
-    public void cargarCategorias(){
-        //Traer categorias de la BD
-        Categoria[] arraySpinner = new Categoria[] {new Categoria(1, "Prueba"), new Categoria(2,"Test")};
-        ArrayAdapter<Categoria> adapterSpinner = new ArrayAdapter<Categoria>(getActivity(), android.R.layout.simple_spinner_item, arraySpinner);
-        spCategoria.setAdapter(adapterSpinner);
-    }
+
 
     public void cargarArticulo(){
         if(!edtId.getText().toString().isEmpty()){
@@ -66,7 +63,7 @@ public class fragmentAlta extends Fragment {
             stock = -1;
         }
         nombre = edtNombre.getText().toString();
-        Categoria categoriaSelec = (Categoria) spCategoria.getSelectedItem();
+        Categoria categoriaSelec = (Categoria) spCategoriaAlta.getSelectedItem();
         if(!nombre.trim().isEmpty() && stock > 0 && id > 0){
             //Chequear que el ID no exista en la BD
                 //Toast.makeText(getActivity() ,"El ID ingresado corresponde a otro artículo",Toast.LENGTH_LONG).show();
@@ -78,16 +75,12 @@ public class fragmentAlta extends Fragment {
             nuevo.setCategoria(categoriaSelec);
             try{
                 //Agregar articulo a BD
-                //Toast.makeText(getActivity() ,"Artículo añadido!",Toast.LENGTH_SHORT).show();
                 //edtNombre.setText("");
                 //edtStock.setText("");
             }catch(Exception e){
                 e.printStackTrace();
                 Toast.makeText(getActivity() ,"Error al añadir el artículo",Toast.LENGTH_SHORT).show();
-            }finally {
-                //Cerrar BD
             }
-
         }else if(id < 0){
             Toast.makeText(getActivity() ,"Debe colocar un ID de artículo.",Toast.LENGTH_SHORT).show();
         }else if(nombre.trim().isEmpty()){

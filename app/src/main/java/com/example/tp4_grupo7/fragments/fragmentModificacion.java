@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.tp4_grupo7.AccesoDatos.ActivityListarArticulos;
+import com.example.tp4_grupo7.AccesoDatos.ActivityListarCategorias;
 import com.example.tp4_grupo7.R;
 import com.example.tp4_grupo7.domain.Articulo;
 import com.example.tp4_grupo7.domain.Categoria;
@@ -37,7 +39,8 @@ public class fragmentModificacion extends Fragment {
         btnBuscar = view.findViewById(R.id.btn_buscar);
         btnModificar = view.findViewById(R.id.btn_modificar);
         articuloLocal = new Articulo();
-        cargarCategorias();
+        ActivityListarCategorias task = new ActivityListarCategorias(spCategoria, view.getContext());
+        task.execute();
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,12 +57,7 @@ public class fragmentModificacion extends Fragment {
         return view;
     }
 
-    public void cargarCategorias(){
-        //Traer categorias de la BD
-        Categoria[] arraySpinner = new Categoria[] {new Categoria(1, "Prueba"), new Categoria(2,"Test")};
-        adapterSpinner = new ArrayAdapter<Categoria>(getActivity(), android.R.layout.simple_spinner_item, arraySpinner);
-        spCategoria.setAdapter(adapterSpinner);
-    }
+
 
     public void buscarArticulo(){
         if (!edtId.getText().toString().isEmpty()) {

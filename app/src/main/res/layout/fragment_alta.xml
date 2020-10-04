@@ -71,7 +71,7 @@
                 android:text="@string/categoria" />
 
             <Spinner
-                android:id="@+id/sp_categoria"
+                android:id="@+id/sp_categoriaAlta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
