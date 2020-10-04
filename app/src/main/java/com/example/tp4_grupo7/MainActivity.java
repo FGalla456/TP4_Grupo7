@@ -7,6 +7,9 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
 
+import com.example.tp4_grupo7.fragments.fragmentAlta;
+import com.example.tp4_grupo7.fragments.fragmentListado;
+import com.example.tp4_grupo7.fragments.fragmentModificacion;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,11 +19,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ViewPager viewPager = (ViewPager)findViewById(R.id.viewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.Tabs);
         loadViewPager(viewPager);
-        tabLayout=(TabLayout)findViewById(R.id.Tabs);
         tabLayout.setupWithViewPager(viewPager);
-         /*textColor(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()),"#3b5998");*/
+        /*textColor(tabLayout.getTabAt(tabLayout.getSelectedTabPosition()),"#3b5998");*/
      /*   tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -39,24 +42,15 @@ public class MainActivity extends AppCompatActivity {
         });*/
     }
 
-    private void textColor(TabLayout.Tab tab , String color){
+    private void textColor(TabLayout.Tab tab, String color) {
         tab.getIcon().setColorFilter(Color.parseColor(color), PorterDuff.Mode.SRC_IN);
     }
 
-    private void loadViewPager(ViewPager viewPager){
+    private void loadViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(newInstance("Alta"));
-        adapter.addFragment(newInstance("Modificacion"));
-        adapter.addFragment(newInstance("Listado"));
+        adapter.addFragment(new fragmentAlta(), "ALTA");
+        adapter.addFragment(new fragmentModificacion(), "MODIFICACIÓN");
+        adapter.addFragment(new fragmentListado(), "LISTADO");
         viewPager.setAdapter(adapter);
-    }
-
-    private fragmentAlta newInstance(String title){
-        Bundle bundle = new Bundle();
-        bundle.putString("title",title);
-        fragmentAlta fragment = new fragmentAlta();
-        fragment.setArguments(bundle);
-
-        return fragment;
     }
 }
