@@ -1,12 +1,9 @@
 package com.example.tp4_grupo7.AccesoDatos;
 
-
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.GridView;
-import android.widget.ListView;
 
-import com.example.tp4_grupo7.Adapter.articuloAdapter;
 import com.example.tp4_grupo7.domain.Articulo;
 import com.example.tp4_grupo7.domain.Categoria;
 
@@ -16,19 +13,20 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class ActivityListarArticulos extends AsyncTask<String, Void, String> {
-
+public class ActivityModificarArticulo extends AsyncTask<String, Void, String> {
     private GridView lvProductos;
     private Context context;
+    private int idProducto;
 
     private static String result2;
     private static ArrayList<Articulo> listaProductos = new ArrayList<Articulo>();
 
-
-    public ActivityListarArticulos(GridView lv, Context ct)
+    public ActivityModificarArticulo(GridView lv, Context ct, Integer id)
     {
         lvProductos = lv;
         context = ct;
+        idProducto = id;
+
     }
 
     @Override
@@ -39,7 +37,7 @@ public class ActivityListarArticulos extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("SELECT * FROM articulo a INNER JOIN categoria as c on c.id = a.idCategoria");
+            ResultSet rs = st.executeQuery("SELECT a.id, nombre, stock,c.id,c.descripcion  FROM articulo a INNER JOIN categoria as c on a.idCategoria = c.id WHERE a.id = " + idProducto);
             result2 = " ";
 
             Articulo prod;
@@ -67,8 +65,7 @@ public class ActivityListarArticulos extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        articuloAdapter adapter = new articuloAdapter(context, listaProductos);
+        com.example.tp4_grupo7.Adapter.articuloAdapter adapter = new com.example.tp4_grupo7.Adapter.articuloAdapter(context, listaProductos);
         lvProductos.setAdapter(adapter);
     }
-
 }

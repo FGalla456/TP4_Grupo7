@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AccesoDatos.ActivityArticulo"></activity>
+        <activity android:name=".AccesoDatos.ActivityArticulo" />
         <activity android:name=".AccesoDatos.ActivityListarCategorias" />
         <activity android:name=".AccesoDatos.ActivityListarArticulos" />
         <activity android:name=".MainActivity2" />

@@ -10,17 +10,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.tp4_grupo7.AccesoDatos.ActivityListarArticulos;
 import com.example.tp4_grupo7.AccesoDatos.ActivityListarCategorias;
+import com.example.tp4_grupo7.AccesoDatos.ActivityModificarArticulo;
 import com.example.tp4_grupo7.R;
 import com.example.tp4_grupo7.domain.Articulo;
 import com.example.tp4_grupo7.domain.Categoria;
 
 public class fragmentModificacion extends Fragment {
     private View view;
+    private GridView grid;
     private EditText edtId, edtNombre, edtStock;
     private Spinner spCategoria;
     private Button btnBuscar, btnModificar;
@@ -39,8 +42,6 @@ public class fragmentModificacion extends Fragment {
         btnBuscar = view.findViewById(R.id.btn_buscar);
         btnModificar = view.findViewById(R.id.btn_modificar);
         articuloLocal = new Articulo();
-        ActivityListarCategorias task = new ActivityListarCategorias(spCategoria, view.getContext());
-        task.execute();
         btnBuscar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -54,6 +55,14 @@ public class fragmentModificacion extends Fragment {
                 modificarArticulo();
             }
         });
+
+        // adapter = new articuloAdapter(view.getContext(), cargarArticulos());
+        grid = view.findViewById(R.id.gv_articulos);
+        // grid.setAdapter(adapter);
+
+
+/*        ActivityListarCategorias task = new ActivityListarCategorias(spCategoria, view.getContext());
+        task.execute();*/
         return view;
     }
 
@@ -62,6 +71,8 @@ public class fragmentModificacion extends Fragment {
     public void buscarArticulo(){
         if (!edtId.getText().toString().isEmpty()) {
             Integer id = Integer.parseInt(edtId.getText().toString());
+            ActivityModificarArticulo task2 = new ActivityModificarArticulo(grid, view.getContext(), id);
+            task2.execute();
             //Buscar en BD el ID
             //articuloLocal = ;
             //edtNombre.setText(articuloLocal.getNombre());
