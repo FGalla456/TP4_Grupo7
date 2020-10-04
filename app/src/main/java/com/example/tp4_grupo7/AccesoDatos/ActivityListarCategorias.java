@@ -30,8 +30,10 @@ public class ActivityListarCategorias extends AsyncTask<String, Void, String> {
     private static ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
 
 
+
     public ActivityListarCategorias(Spinner sp, Context ct)
     {
+
         this.spCategorias = sp;
         context = ct;
     }
@@ -39,7 +41,7 @@ public class ActivityListarCategorias extends AsyncTask<String, Void, String> {
     @Override
     protected String doInBackground(String... urls) {
         String response = "";
-
+        listaCategorias.removeAll(listaCategorias);
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
