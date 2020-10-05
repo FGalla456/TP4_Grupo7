@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.tp4_grupo7.AccesoDatos.ActivityArticulo;
 import com.example.tp4_grupo7.AccesoDatos.ActivityListarCategorias;
+import com.example.tp4_grupo7.AccesoDatos.ActivityListarCategoriasAlta;
 import com.example.tp4_grupo7.R;
 import com.example.tp4_grupo7.domain.Articulo;
 import com.example.tp4_grupo7.domain.Categoria;
@@ -38,8 +39,9 @@ public class fragmentAlta extends Fragment {
         edtStock = view.findViewById(R.id.edt_stock);
         spCategoriaAlta = view.findViewById(R.id.sp_categoriaAlta);
         btnAgregar = view.findViewById(R.id.btn_agregar);
-        ActivityListarCategorias task = new ActivityListarCategorias(spCategoriaAlta, view.getContext());
+        ActivityListarCategoriasAlta task = new ActivityListarCategoriasAlta(spCategoriaAlta, view.getContext());
         task.execute();
+
         btnAgregar.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -49,8 +51,6 @@ public class fragmentAlta extends Fragment {
 
         return view;
     }
-
-
 
     public void cargarArticulo(){
         if(!edtId.getText().toString().isEmpty()){
@@ -77,6 +77,7 @@ public class fragmentAlta extends Fragment {
             try{
                 ActivityArticulo task2 = new ActivityArticulo(nuevo, view.getContext());
                 task2.execute();
+                edtId.setText("");
                 edtNombre.setText("");
                 edtStock.setText("");
             }catch(Exception e){

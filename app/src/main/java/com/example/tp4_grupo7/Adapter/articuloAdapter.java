@@ -17,19 +17,19 @@ public class articuloAdapter extends BaseAdapter {
     private ArrayList<Articulo> articulos;
     private Context context;
 
-    public articuloAdapter(Context context, ArrayList<Articulo> articulos){
+    public articuloAdapter(Context context, ArrayList<Articulo> artList){
         this.context = context;
-        this.articulos = articulos;
+        this.articulos = artList;
     }
 
     @Override
     public int getCount() {
-        return articulos.size();
+        return this.articulos.size();
     }
 
     @Override
     public Articulo getItem(int i) {
-        return articulos.get(i);
+       return this.articulos.get(i);
     }
 
     @Override

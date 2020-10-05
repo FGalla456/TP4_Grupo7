@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.example.tp4_grupo7.domain.Articulo;
 import com.example.tp4_grupo7.domain.Categoria;
+import com.example.tp4_grupo7.fragments.fragmentAlta;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -40,8 +41,6 @@ public class ActivityModificarArticulo extends AsyncTask<String, Void, String> {
             st.executeUpdate("UPDATE articulo SET nombre = '" + articulo.getNombre() + "', stock = " + articulo.getStock() + ", idCategoria = " + articulo.getCategoria().getId() + " WHERE id = "+ articulo.getId());
             result2 = " ";
 
-
-
             response = "Conexion exitosa";
         }
         catch(Exception e) {
@@ -54,9 +53,8 @@ public class ActivityModificarArticulo extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-        if (response.equals("Conexion exitosa"))
-        {
-            Toast.makeText(context ,"El artìculo se cargó exitosamente",Toast.LENGTH_LONG).show();
+        if (response.equals("Conexion exitosa")){
+            Toast.makeText(context ,"El artículo se modificó exitosamente",Toast.LENGTH_LONG).show();
         }
     }
 }

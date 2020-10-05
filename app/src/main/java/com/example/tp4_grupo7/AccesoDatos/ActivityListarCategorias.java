@@ -2,6 +2,7 @@ package com.example.tp4_grupo7.AccesoDatos;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -22,26 +23,24 @@ import android.widget.Spinner;
 
 public class ActivityListarCategorias extends AsyncTask<String, Void, String> {
 
-    private ArrayAdapter<Categoria> adapterSpinner;
-    private Spinner spCategorias;
+    private ArrayAdapter<Categoria> adapterSpinnerAlta, adapterSpinner;
+    private Spinner spCategoriasAlta, spCategorias;
     private Context context;
 
     private static String result2;
     private static ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
 
-
-
-    public ActivityListarCategorias(Spinner sp, Context ct)
-    {
-
+    public ActivityListarCategorias(Spinner sp, Context ct){
         this.spCategorias = sp;
-        context = ct;
+        this.context = ct;
     }
 
     @Override
     protected String doInBackground(String... urls) {
         String response = "";
-        listaCategorias.removeAll(listaCategorias);
+        if(listaCategorias.size() > 0){
+            listaCategorias.removeAll(listaCategorias);
+        }
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
@@ -49,16 +48,11 @@ public class ActivityListarCategorias extends AsyncTask<String, Void, String> {
             ResultSet rs = st.executeQuery("SELECT * FROM categoria");
             result2 = " ";
 
-
             Categoria categ;
-
             while(rs.next()) {
-
                 categ = new Categoria();
-
                 categ.setId(rs.getInt("id"));
                 categ.setDescripcion(rs.getString("descripcion"));
-
                 listaCategorias.add(categ);
             }
             response = "Conexion exitosa";
@@ -68,14 +62,13 @@ public class ActivityListarCategorias extends AsyncTask<String, Void, String> {
             result2 = "Conexion no exitosa";
         }
         return response;
-
     }
 
     @Override
     protected void onPostExecute(String response) {
-
-        adapterSpinner = new ArrayAdapter<Categoria>(context, android.R.layout.simple_spinner_item, listaCategorias);
-        spCategorias.setAdapter(adapterSpinner);
-
+        if(response.equals("Conexion exitosa")){
+                adapterSpinner = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, listaCategorias);
+                spCategorias.setAdapter(adapterSpinner);
+        }
     }
 }

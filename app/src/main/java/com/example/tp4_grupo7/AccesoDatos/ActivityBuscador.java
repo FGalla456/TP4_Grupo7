@@ -3,7 +3,9 @@ package com.example.tp4_grupo7.AccesoDatos;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.tp4_grupo7.domain.Articulo;
@@ -20,6 +22,8 @@ import android.os.Bundle;
 public class ActivityBuscador extends AsyncTask<String, Void, String> {
 
     private Articulo articulo;
+    private EditText nombre, stock;
+    private Spinner spinner;
     private Articulo prod;
     private Categoria categ;
     private int idModificar;
@@ -28,13 +32,14 @@ public class ActivityBuscador extends AsyncTask<String, Void, String> {
 
     private static String result2;
 
-    public ActivityBuscador(Articulo art, int id, Context ct)
+    public ActivityBuscador(Articulo art, int id, Context ct, EditText nombre, EditText stock, Spinner spinner)
     {
         articulo = art;
         idModificar = id;
         context = ct;
-
-
+        this.nombre = nombre;
+        this.stock = stock;
+        this.spinner = spinner;
     }
 
     @Override
@@ -47,7 +52,6 @@ public class ActivityBuscador extends AsyncTask<String, Void, String> {
             ResultSet rs = st.executeQuery("SELECT * FROM articulo a INNER JOIN categoria as c on c.id = a.idCategoria WHERE a.id = " +idModificar);
 
             result2 = " ";
-
 
             while(rs.next()) {
                 prod = new Articulo();
@@ -67,15 +71,19 @@ public class ActivityBuscador extends AsyncTask<String, Void, String> {
             result2 = "Conexion no exitosa";
         }
         return response;
-
     }
 
     @Override
     protected void onPostExecute(String response) {
-        if (response.equals("Conexion exitosa"))
-        {
+        if (response.equals("Conexion exitosa")){
             articulo = prod;
+            if(articulo != null){
+                nombre.setText(articulo.getNombre());
+                stock.setText(articulo.getStock().toString());
+                spinner.setSelection(articulo.getCategoria().getId()-1);
+            }else{
+                Toast.makeText(context ,"Artículo con ID: "+ idModificar +" no encontrado.",Toast.LENGTH_SHORT).show();
+            }
         }
-
     }
 }

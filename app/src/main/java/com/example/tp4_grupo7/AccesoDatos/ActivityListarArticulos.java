@@ -67,9 +67,10 @@ public class ActivityListarArticulos extends AsyncTask<String, Void, String> {
 
     @Override
     protected void onPostExecute(String response) {
-
-        articuloAdapter adapter = new articuloAdapter(context, listaProductos);
-        lvProductos.setAdapter(adapter);
+        if (response.equals("Conexion exitosa")) {
+            articuloAdapter adapter = new articuloAdapter(context, listaProductos);
+            lvProductos.setAdapter(adapter);
+        }
     }
 
 }

@@ -2,13 +2,9 @@ package com.example.tp4_grupo7.AccesoDatos;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
-import android.widget.ListView;
+import android.widget.Spinner;
 
-import com.example.tp4_grupo7.Adapter.articuloAdapter;
-import com.example.tp4_grupo7.domain.Articulo;
 import com.example.tp4_grupo7.domain.Categoria;
 
 import java.sql.Connection;
@@ -16,22 +12,17 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
-import android.os.Bundle;
-import android.widget.Spinner;
+public class ActivityListarCategoriasAlta extends AsyncTask<String, Void, String> {
 
-public class ActivityListarCategorias extends AsyncTask<String, Void, String> {
-
-    private ArrayAdapter<Categoria> adapterSpinnerAlta, adapterSpinner;
+    private ArrayAdapter<Categoria> adapterSpinner;
     private Spinner spCategoriasAlta, spCategorias;
     private Context context;
-    private String tipo;
 
     private static String result2;
     private static ArrayList<Categoria> listaCategorias = new ArrayList<Categoria>();
 
-    public ActivityListarCategorias(Spinner sp, Context ct, String tipo){
+    public ActivityListarCategoriasAlta(Spinner sp, Context ct){
         this.spCategorias = sp;
         this.context = ct;
     }
