@@ -3,7 +3,6 @@
     package="com.example.tp4_grupo7">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
@@ -13,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".AccesoDatos.ActivityBuscador"></activity>
         <activity android:name=".AccesoDatos.ActivityArticulo" />
         <activity android:name=".AccesoDatos.ActivityListarCategorias" />
         <activity android:name=".AccesoDatos.ActivityListarArticulos" />

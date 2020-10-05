@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.tp4_grupo7.AccesoDatos.ActivityArticulo;
 import com.example.tp4_grupo7.AccesoDatos.ActivityListarCategorias;
 import com.example.tp4_grupo7.R;
 import com.example.tp4_grupo7.domain.Articulo;
@@ -74,9 +75,10 @@ public class fragmentAlta extends Fragment {
             nuevo.setStock(stock);
             nuevo.setCategoria(categoriaSelec);
             try{
-                //Agregar articulo a BD
-                //edtNombre.setText("");
-                //edtStock.setText("");
+                ActivityArticulo task2 = new ActivityArticulo(nuevo, view.getContext());
+                task2.execute();
+                edtNombre.setText("");
+                edtStock.setText("");
             }catch(Exception e){
                 e.printStackTrace();
                 Toast.makeText(getActivity() ,"Error al añadir el artículo",Toast.LENGTH_SHORT).show();

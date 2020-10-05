@@ -40,7 +40,7 @@ public class ActivityArticulo extends AsyncTask<String, Void, String> {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection(DataDB.urlMySQL, DataDB.user, DataDB.pass);
             Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery("INSERT INTO articulo (id, nombre, stock, idCategoria) VALUES ("+ art.getId() +", '"+art.getNombre()+"', "+art.getStock()+" ,"+art.getCategoria().getId()+")");
+            st.execute("INSERT INTO articulo (id, nombre, stock, idCategoria) VALUES ("+ art.getId() +", '"+art.getNombre()+"', "+art.getStock()+" ,"+art.getCategoria().getId()+")");
             result2 = " ";
             response = "Conexion exitosa";
         }
