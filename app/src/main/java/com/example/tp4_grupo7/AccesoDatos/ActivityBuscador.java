@@ -79,6 +79,7 @@ public class ActivityBuscador extends AsyncTask<String, Void, String> {
             articulo = prod;
             if(articulo != null){
                 nombre.setText(articulo.getNombre());
+                nombre.setText(articulo.getNombre());
                 stock.setText(articulo.getStock().toString());
                 spinner.setSelection(articulo.getCategoria().getId()-1);
             }else{
