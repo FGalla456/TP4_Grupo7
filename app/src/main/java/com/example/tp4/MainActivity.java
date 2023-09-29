@@ -1,15 +1,13 @@
-package com.example.tp4_grupo7;
+package com.example.tp4;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
-import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.os.Bundle;
 
-import com.example.tp4_grupo7.fragments.fragmentAlta;
-import com.example.tp4_grupo7.fragments.fragmentListado;
-import com.example.tp4_grupo7.fragments.fragmentModificacion;
+import com.example.tp4.fragments.fragmentAlta;
+import com.example.tp4.fragments.fragmentListado;
+import com.example.tp4.fragments.fragmentModificacion;
 import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {

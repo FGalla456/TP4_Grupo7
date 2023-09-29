@@ -1,11 +1,11 @@
-package com.example.tp4_grupo7.AccesoDatos;
+package com.example.tp4.AccesoDatos;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-import com.example.tp4_grupo7.domain.Categoria;
+import com.example.tp4.domain.Categoria;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

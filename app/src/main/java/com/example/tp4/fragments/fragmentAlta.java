@@ -1,21 +1,18 @@
-package com.example.tp4_grupo7.fragments;
+package com.example.tp4.fragments;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.tp4_grupo7.AccesoDatos.ActivityArticulo;
-import com.example.tp4_grupo7.AccesoDatos.ActivityListarCategorias;
-import com.example.tp4_grupo7.AccesoDatos.ActivityListarCategoriasAlta;
-import com.example.tp4_grupo7.R;
-import com.example.tp4_grupo7.domain.Articulo;
-import com.example.tp4_grupo7.domain.Categoria;
+import com.example.tp4.AccesoDatos.ActivityArticulo;
+import com.example.tp4.AccesoDatos.ActivityListarCategoriasAlta;
+import com.example.tp4.R;
+import com.example.tp4.domain.Articulo;
+import com.example.tp4.domain.Categoria;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;

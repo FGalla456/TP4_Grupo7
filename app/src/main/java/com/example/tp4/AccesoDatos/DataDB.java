@@ -1,4 +1,4 @@
-package com.example.tp4_grupo7.AccesoDatos;
+package com.example.tp4.AccesoDatos;
 
 public class DataDB {
 

@@ -1,4 +1,4 @@
-package com.example.tp4_grupo7;
+package com.example.tp4;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

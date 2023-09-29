@@ -1,36 +1,23 @@
-package com.example.tp4_grupo7.fragments;
+package com.example.tp4.fragments;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.tp4_grupo7.AccesoDatos.ActivityBuscador;
-import com.example.tp4_grupo7.AccesoDatos.ActivityListarArticulos;
-import com.example.tp4_grupo7.AccesoDatos.ActivityListarCategorias;
-import com.example.tp4_grupo7.AccesoDatos.ActivityModificarArticulo;
-import com.example.tp4_grupo7.AccesoDatos.DataDB;
-import com.example.tp4_grupo7.R;
-import com.example.tp4_grupo7.domain.Articulo;
-import com.example.tp4_grupo7.domain.Categoria;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import com.example.tp4.AccesoDatos.ActivityBuscador;
+import com.example.tp4.AccesoDatos.ActivityListarCategorias;
+import com.example.tp4.AccesoDatos.ActivityModificarArticulo;
+import com.example.tp4.R;
+import com.example.tp4.domain.Articulo;
+import com.example.tp4.domain.Categoria;
 
 public class fragmentModificacion extends Fragment {
     private View view;

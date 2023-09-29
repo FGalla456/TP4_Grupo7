@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tp4_grupo7">
+    package="com.example.tp4">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,13 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AccesoDatos.ActivityBuscador"></activity>
-        <activity android:name=".AccesoDatos.ActivityArticulo" />
-        <activity android:name=".AccesoDatos.ActivityListarCategorias" />
-        <activity android:name=".AccesoDatos.ActivityListarArticulos" />
+        <activity android:name="com.example.tp4.AccesoDatos.ActivityBuscador"></activity>
+        <activity android:name="com.example.tp4.AccesoDatos.ActivityArticulo" />
+        <activity android:name="com.example.tp4.AccesoDatos.ActivityListarCategorias" />
+        <activity android:name="com.example.tp4.AccesoDatos.ActivityListarArticulos" />
         <activity android:name=".MainActivity2" />
-        <activity android:name=".fragments.fragmentAlta" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.example.tp4.fragments.fragmentAlta" />
+        <activity android:name="com.example.tp4.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

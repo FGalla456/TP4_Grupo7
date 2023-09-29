@@ -1,4 +1,4 @@
-package com.example.tp4_grupo7.fragments;
+package com.example.tp4.fragments;
 
 import android.os.Bundle;
 
@@ -9,12 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 
-import com.example.tp4_grupo7.AccesoDatos.ActivityListarArticulos;
-import com.example.tp4_grupo7.Adapter.articuloAdapter;
-import com.example.tp4_grupo7.R;
-import com.example.tp4_grupo7.domain.Articulo;
+import com.example.tp4.AccesoDatos.ActivityListarArticulos;
+import com.example.tp4.Adapter.articuloAdapter;
+import com.example.tp4.R;
+import com.example.tp4.domain.Articulo;
 
-import java.security.AccessController;
 import java.util.ArrayList;
 
 public class fragmentListado extends Fragment {

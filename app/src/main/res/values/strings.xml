@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">TP4_Grupo7</string>
+    <string name="app_name">TP4</string>
     <string name="Tabs_1">Alta</string>
     <string name="Tabs_2">Modificación</string>
     <string name="Tabs_3">Listado</string>

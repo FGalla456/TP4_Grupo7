@@ -1,4 +1,4 @@
-package com.example.tp4_grupo7.Adapter;
+package com.example.tp4.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,8 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.example.tp4_grupo7.R;
-import com.example.tp4_grupo7.domain.Articulo;
+import com.example.tp4.R;
+import com.example.tp4.domain.Articulo;
 
 import java.util.ArrayList;
 

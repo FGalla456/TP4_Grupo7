@@ -1,4 +1,4 @@
-package com.example.tp4_grupo7.domain;
+package com.example.tp4.domain;
 
 public class Articulo {
 

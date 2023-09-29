@@ -1,4 +1,4 @@
-package com.example.tp4_grupo7;
+package com.example.tp4;
 
 import org.junit.Test;
 

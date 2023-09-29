@@ -1,14 +1,13 @@
-package com.example.tp4_grupo7.AccesoDatos;
+package com.example.tp4.AccesoDatos;
 
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.widget.GridView;
-import android.widget.ListView;
 
-import com.example.tp4_grupo7.Adapter.articuloAdapter;
-import com.example.tp4_grupo7.domain.Articulo;
-import com.example.tp4_grupo7.domain.Categoria;
+import com.example.tp4.Adapter.articuloAdapter;
+import com.example.tp4.domain.Articulo;
+import com.example.tp4.domain.Categoria;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
